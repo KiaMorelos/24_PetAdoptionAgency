@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}Adoption Agency{% endblock %}
+
+{% block content %}
+<h1>Details about {{pet.name}}</h1>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col">
+                <p><img src="{{ pet.find_photo }}" width="450"></p>
+            </div>
+            <div class="col">
+                <p>
+                    <b>Pet Name:</b> {{pet.name}}<br>
+                    <b>Pet Species:</b> {{pet.species}}<br>
+                    <b>Age:</b>
+                        {% if pet.age%}
+                            {{ pet.age }}
+                        {% else %}
+                            unknown
+                        {% endif %}
+                    </p>
+                    <form id="add-pet-form" method="POST">
+                        {{ form.hidden_tag() }} <!--add type=hidden form fields -->
+                      
+                        {% for field in form
+                               if field.widget.input_type != 'hidden' %}
+                           
+                         <div class="form-group">
+                            {{ field.label }}
+                            {{ field(class_="form-control") }}
+                      
+                            {% for error in field.errors %}
+                              <small class="text-danger"> {{ error }}</small>
+                            {% endfor %}
+                        </div>
+                    
+                        {% endfor %}
+                      
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                      </form>
+            </div>
+    </div>
+</div>
+
+{% endblock %}
