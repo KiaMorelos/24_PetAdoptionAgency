@@ -5,6 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 
 default_image_url = "static/imgs/pawprint.png"
+##default image from pixabay: Image by Elionas from Pixabay
 
 class Pet(db.Model):
     """Pets Available for Adoption"""
